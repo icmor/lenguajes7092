@@ -16,8 +16,10 @@ Practica 1.
        (* pi (expt (/ diametro 2) 2)))))
 
 ;; Ejercicio 2
+;; Función que recibe cuatro números a, b, c, d y determina si estos se encuenctran
+;; en orden descendente es decir a > b > c > d
 (define (decremental? a b c d)
-  (error "Sin implementar"))
+  (and (> a b) (> b c) (> c d)))
 
 ;; Ejercicio 3
 ;; Función para calcular el área de un triángulo a partir de sus lados
@@ -27,17 +29,26 @@ Practica 1.
     (sqrt (* S (- S a) (- S b) (- S c)))))
 
 ;; Ejercicio 4
+;; Función que recibe una cadena y retorna "Vocal" si la cadena empieza con
+;; una vocal y "Consonante" si empieza con una consonante.
 (define (primera-letra s)
-  (error "Sin implementar"))
+  (match (substring s 0 1)
+    ["a" "Vocal"]
+    ["e" "Vocal"]
+    ["i" "Vocal"]
+    ["o" "Vocal"]
+    ["u" "Vocal"]
+    [_ "Consonante"]))
 
 ;; Ejercicio 5
 ;; Predicado que regresa #t si un número es par y #f si es impar
 (define (par? n)
-  (eq? (modulo n 2) 0))
+  (= (modulo n 2) 0))
 
 ;; Ejercicio 6
+;; Predicado que regresa #t si un número es impar y #f si es par
 (define (impar? n)
-  (error "Sin implementar"))
+  (not (par? n)))
 
 ;; Ejercicio 7
 ;; Función que recibe tres números y devuelve #t si el primer
@@ -50,5 +61,20 @@ Practica 1.
    (or (< x (- a 10)) (> x (+ a 10)))))
 
 ;; Ejercicio 8
+;; Función que recibe una cadena indicando una operación y dos argumentos
+;; numéricos sobre los cuales operar. Las posibles operaciones son:
+;; first: retorna el primer operando
+;; second: retorna el segundo operando
+;; sum: retorna la suma de los operandos
+;; mul: retorna el producto de los operandos
+;; div-exacto: retorna el cociente de dividr el primer operando entre el segundo
+;; div: retorna el cociente entero de dividir el primer operando entre el
+;; segundo
 (define (calculadora operacion n m)
-  (error "Sin implementar"))
+  (match operacion
+    ["first" n]
+    ["second" m]
+    ["sum" (+ n m)]
+    ["mul" (* n m)]
+    ["div-exact" (quotient n m)]
+    ["div" (/ n m)]))
