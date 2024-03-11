@@ -36,3 +36,45 @@ Practica 2.
                  (circulo (diametro) (let ((radio (/ diametro 2)))
                                        (* radio radio pi))))))
 
+;; Ejercicio 6
+;; Tipo de dato para un árbol binario de busqueda
+(define-type ArbolDeBusqueda
+  [vacio]
+  [nodo (elem number?) (izq ArbolDeBusqueda?) (der ArbolDeBusqueda?)])
+
+;; Ejercicio 6a
+;; Función que elimina un nodo del árbol ar en base a su elemento.
+(define (elimina ar el)
+  (type-case ArbolDeBusqueda ar
+             (vacio () ar)
+             (nodo (elem izq der)
+                   (if (not (eq? elem el))
+                       (nodo elem (elimina izq el) (elimina der el))
+                       (if (vacio? izq) der
+                           (nodo (nodo-elem izq)
+                                 (elimina (nodo elem (nodo-izq izq)
+                                                (nodo-der izq)) el)
+                                 (elimina der el)))))))
+
+;; Ejercicio 6b
+;; Predicado que regresa #t si el árbol ar contiene un nodo con el elemento el.
+;; De lo contrario regresa #f.
+(define (contiene? ar el)
+  (type-case ArbolDeBusqueda ar
+             (vacio () #f)
+             (nodo (elem izq der) (or (eq? elem el)
+                                      (contiene? izq el)
+                                      (contiene? der el)))))
+
+;; Ejercicio 6c
+;; Función que recibe un árbol ar y un predicado pred. Regresa un nuevo árbol
+;; donde todos los nodos tienen un elemento que cumple pred.
+(define (filtrar-arbol ar pred)
+  (type-case ArbolDeBusqueda ar
+             (vacio () (vacio))
+             (nodo (elem izq der)
+                   (if (pred elem)
+                       (nodo elem (filtrar-arbol izq pred)
+                             (filtrar-arbol der pred))
+                       (filtrar-arbol
+                        (elimina (nodo elem der izq) elem) pred)))))
