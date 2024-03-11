@@ -78,3 +78,12 @@ Practica 2.
                              (filtrar-arbol der pred))
                        (filtrar-arbol
                         (elimina (nodo elem der izq) elem) pred)))))
+
+;; Punto extra
+
+;; El código de Racket termina su ejecución mucho más rápido
+;; (orden de magnitud x10).
+
+;; El código de Racket termina antes por que maneja llamadas recursivas de una
+;; forma mucho más eficiente que Python, esta diferencia sería aun más marcada
+;; si tuvieramos llamadas de cola ya que Racket implementa TCO y Python no.
