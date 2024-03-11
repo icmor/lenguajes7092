@@ -19,3 +19,9 @@ Practica 2.
         ((>= index (length ls)) error 'get-by-index err-index-too-big)
         (else (get-elem index ls))))
 
+;; Ejercicio 3
+;; Tipo de dato para circulos y cuadrados
+(define-type Figura
+  (cuadrado (lado number?))
+  (circulo (diametro number?)))
+
