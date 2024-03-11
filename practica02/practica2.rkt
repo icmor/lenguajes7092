@@ -6,6 +6,14 @@ Practica 2.
 ;; Equipo
 ;; Iñaki Cornejo de la Mora
 ;; Dahlia Yali Osorio Rangel
+
+;; Ejercicio 1
+;; Función que aplica una función a cada uno de los elementos de una lista
+;; regresando una lista con los resultados.
+(define (mapea func ls)
+  (if (empty? ls) '()
+  (cons (func (car ls)) (mapea func (cdr ls)))))
+
 ;; Ejercicio 2
 (define err-index-too-big "El índice es mayor o igual que el tamaño de la lista")
 (define err-index-too-small "El índice no puede ser menor que 0")
