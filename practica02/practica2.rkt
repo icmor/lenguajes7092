@@ -25,3 +25,14 @@ Practica 2.
   (cuadrado (lado number?))
   (circulo (diametro number?)))
 
+;; Ejercicio 4
+(define err-tipo-area "El parámetro recibido no es del tipo: Figura")
+
+;; Función para obtener el área de un dato tipo Figura
+(define (area figura)
+  (if (not (Figura? figura)) (error 'area err-tipo-area)
+      (type-case Figura figura
+                 (cuadrado (lado) (* lado lado))
+                 (circulo (diametro) (let ((radio (/ diametro 2)))
+                                       (* radio radio pi))))))
+
