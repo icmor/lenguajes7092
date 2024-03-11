@@ -44,6 +44,13 @@ Practica 2.
                  (circulo (diametro) (let ((radio (/ diametro 2)))
                                        (* radio radio pi))))))
 
+;; Ejercicio 5
+;; Función para calcular el perímetro de un dato tipo Figura
+(define (perimetro figura)
+  (type-case Figura figura
+             (cuadrado (lado) (* lado 4))
+             (circulo (diametro) (* diametro pi))))
+
 ;; Ejercicio 6
 ;; Tipo de dato para un árbol binario de busqueda
 (define-type ArbolDeBusqueda
